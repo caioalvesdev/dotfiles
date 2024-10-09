@@ -5,6 +5,11 @@ import = [
 [env]
 TERM = "xterm-256color"
 
+[window]
+dynamic_padding = false
+opacity = 1
+decorations = "Buttonless"
+
 [font]
 size = 14.0
 
