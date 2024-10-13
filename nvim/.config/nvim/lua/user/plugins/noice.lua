@@ -89,8 +89,6 @@ return {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
-        -- ["vim.lsp.handlers['textDocument/hover']"] = false,
-        -- ["vim.lsp.handlers['textDocument/signatureHelp']"] = false,
       },
       hover = {
         enabled = false,
@@ -128,14 +126,22 @@ return {
     markdown = {
       hover = {
         ["|(%S-)|"] = vim.cmd.help,
-        ["%[.-%]%((%S-)%)"] = require("noice.util").open,
+        ["%[.-%]%((%S-)%)"] = function()
+          local noice_util = require("noice.util")
+          if noice_util then
+            return noice_util.open()
+          else
+            print("noice.util não encontrado.")
+            return nil
+          end
+        end,
       },
       highlights = {
         ["|%S-|"] = "@text.reference",
         ["@%S+"] = "@parameter",
         ["^%s*(Parameters:)"] = "@text.title",
         ["^%s*(Return:)"] = "@text.title",
-        ["^%s*(See also:)"] = "@text.title",
+        ["^%s*(See também:)"] = "@text.title",
         ["{%S-}"] = "@parameter",
       },
     },
@@ -156,3 +162,4 @@ return {
     format = {},
   },
 }
+
